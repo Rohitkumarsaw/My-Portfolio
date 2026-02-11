@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rohit Kumar | Full-Stack Web Developer</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Syncopate:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+  <link rel="stylesheet" href="style.css">
+  <!-- Head tag ke andar -->
+<link rel="icon" type="image/png" href="icon.png">
+
+  
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-database-compat.js"></script>
+</head>
+
+<body class="portfolio-locked">
+  <canvas id="particleCanvas"></canvas>
+  
+  <!-- ✅ LOADER -->
+  <div class="loader-container" id="loader">
+    <div class="loader-brand">
+      <div class="loader-logo">ROHIT KUMAR</div>
+      <div class="loader-subtitle">FULL-STACK DEVELOPER</div>
+    </div>
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+    <div class="loader-status">WELCOME BACK...</div>
+  </div>
+
+  <!-- ✅ ADMIN ACCESS BUTTON (Hidden by default) -->
+  <div class="admin-access" id="adminAccess" style="display: none;">
+    <button class="admin-btn" onclick="window.openAdmin()">
+      <i class="fas fa-cogs"></i> Admin Panel
+    </button>
+  </div>
+
+  <!-- ✅ UPDATED NAVBAR - MODERN GLASSMORPHISM -->
+<div class="header-container" id="navbar">
+  <div class="header-inner">
+    <a href="#home" class="logo">
+      <span class="logo-text">ROHIT KUMAR</span>
+      <span class="logo-glow"></span>
+    </a>
+    <nav class="nav-container">
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link" data-section="home">🏠 Home</a></li>
+        <li><a href="#about" class="nav-link" data-section="about">👤 About</a></li>
+          <li><a href="#education" class="nav-link" data-section="education">🎓 Education</a></li>
+        <li><a href="#services" class="nav-link" data-section="services">⚙️ Services</a></li>
+        <li><a href="#projects" class="nav-link" data-section="projects">💻 Projects</a></li>
+      
+        <!--<li><a href="#certifications" class="nav-link" data-section="certifications">Certifications</a></li>-->
+        <li><a href="#contact" class="nav-link" data-section="contact">📧 Contact</a></li>
+        <li><a href="admin.html" class="nav-link admin-link" target="_blank">⚙️ Admin </a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<!-- ✅ UPDATED MOBILE NAV -->
+<nav class="mobile-nav" id="mobileNav">
+  <ul class="mobile-nav-list">
+    <li><a href="#home" class="mobile-nav-link" data-section="home">🏠 Home</a></li>
+    <li><a href="#about" class="mobile-nav-link" data-section="about">👤 About</a></li>
+      <li><a href="#education" class="mobile-nav-link" data-section="education">🎓 Education</a></li>
+    <li><a href="#services" class="mobile-nav-link" data-section="services">⚙️ Services</a></li>
+    <li><a href="#projects" class="mobile-nav-link" data-section="projects">💻 Projects</a></li>
+  
+    <!--<li><a href="#certifications" class="mobile-nav-link" data-section="certifications">🏆 Certifications</a></li>-->
+    <li><a href="#contact" class="mobile-nav-link" data-section="contact">📧 Contact</a></li>
+    <li><a href="admin.html" class="mobile-nav-link admin-link" target="_blank">⚙️ Admin</a></li>
+  </ul>
+</nav>
+
+
+  <!-- ✅ MAIN CONTENT -->
+  <main>
+    <!-- ✅ WELCOME SCREEN -->
+    <section id="welcome" class="welcome-hero">
+      <div class="container">
+        <h1 class="hero-title">ROHIT KUMAR</h1>
+        <p class="hero-subtitle">FULL-STACK WEB DEVELOPER</p>
+        <div class="stats-grid" id="welcomeStats">
+          <div class="stat-card"><span class="stat-number">0</span><span class="stat-label">Projects Live</span></div>
+          <div class="stat-card"><span class="stat-number">0</span><span class="stat-label">Years Experience</span></div>
+          <div class="stat-card"><span class="stat-number">0%</span><span class="stat-label">Success Rate</span></div>
+        </div>
+        <div class="cta-buttons">
+          <a href="#home" class="btn-primary enter-portfolio-btn">
+            <i class="fas fa-rocket"></i> Enter Portfolio
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ HOME HERO -->
+    <section id="home" class="home-hero">
+      <div class="container">
+        <div class="profile-section" data-aos="fade-right">
+          <div class="profile-image-container">
+            <img src="myphoto.jpg" alt="Rohit Kumar" class="profile-image">
+            <div class="profile-badge">FULL-STACK DEVELOPER</div>
+          </div>
+          <div class="social-links">
+            <a href="https://github.com/Rohitkumarsaw" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/feed/?trk=sem-ga_campid.14650114788_asid.151761418307_crid.657403558721_kw.linkedin%20profile_d.c_tid.kwd-10521864172_n.g_mt.e_geo.1007749" class="social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://x.com/DELLOFFICIAL6" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <div class="hero-content" data-aos="fade-up">
+          <div class="status-indicator">
+            <div class="status-dot"></div> PORTFOLIO STATUS : LIVE
+          </div>
+           <!-- Naya real-time date-time add karo -->
+  <div id="live-datetime" class="live-datetime"></div>
+          <div class="mode-toggle" id="modeToggle">
+            <button class="mode-btn active" data-mode="dev">DEV MODE</button>
+            <button class="mode-btn" data-mode="client">CLIENT MODE</button>
+          </div>
+          <div id="heroContent">
+            <div class="dev-content">
+              <h1 class="hero-main-title">ROHIT KUMAR</h1>
+              <p class="hero-description" id="heroDescription">Loading...</p>
+              <div class="hero-tech-stack" id="heroTechStack">
+                <span class="tech-tag">Loading...</span>
+              </div>
+            </div>
+            <div class="client-content" style="display: none;">
+              <h1 class="hero-main-title">YOUR NEXT PRODUCT</h1>
+              <p class="hero-description">Need fast, scalable web solutions?</p>
+              <div class="hero-tech-stack">
+                <span class="tech-tag">Full-Stack</span><span class="tech-tag">Responsive</span>
+                <span class="tech-tag">Scalable</span><span class="tech-tag">Production-Ready</span>
+              </div>
+            </div>
+          </div>
+          <div class="action-buttons">
+            <a href="#projects" class="btn-primary"><i class="fas fa-eye"></i> View Projects</a>
+            <a href="#contact" class="btn-secondary"><i class="fas fa-comments"></i> Start Project</a>
+          </div>
+          <div class="cv-section">
+            <a href="resume.pdf" class="cv-download cv-download-home" download>
+              <i class="fas fa-file-pdf"></i> Download My CV
+            </a>
+          </div>
+          <div class="metrics-grid" id="homeMetrics">
+            <div class="metric-item"><div class="metric-value">0</div><div class="metric-label">Live Projects</div></div>
+            <div class="metric-item"><div class="metric-value">0</div><div class="metric-label">Years Exp</div></div>
+            <div class="metric-item"><div class="metric-value">0%</div><div class="metric-label">Success Rate</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ ABOUT SECTION -->
+    <section id="about" class="container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-number">02.</div>
+        <h2 class="section-title">About Rohit</h2>
+        <!--<p class="section-subtitle" id="aboutSubtitle">Loading...</p>-->
+      </div>
+
+      <div class="cards-grid">
+        <div class="glass-card about-text-card" data-aos="fade-right">
+          <p class="about-main-text" id="aboutMainText">Loading...</p>
+          <ul class="about-bullets" id="aboutBullets">
+           <!-- <li><i class="fas fa-check-circle"></i> Loading skills...</li>-->
+          </ul>
+        </div>
+
+        <div class="glass-card about-tech-card" data-aos="fade-left">
+          <h4 class="about-tech-title">Tech Stack</h4>
+          <div class="about-tech-tags" id="aboutTechTags">
+            <span class="tech-pill cyan">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+     <!-- ✅ EDUCATION & CERTIFICATIONS SECTION (Firebase Ready) -->
+<section id="education" class="container">
+  <div class="section-header" data-aos="fade-up">
+    <div class="section-number">03.</div>
+    <h2 class="section-title">Education & Certifications</h2>
+  </div>
+
+  <div class="cards-grid">
+    <!-- LEFT CARD - EDUCATION -->
+    <div class="glass-card about-text-card education-card" data-aos="fade-right">
+      <h4 class="about-tech-title cyan-glow" id="educationTitle">📚 Education</h4>
+      <ul class="about-bullets education-bullets" id="educationList">
+        <li><i class="fas fa-spinner fa-spin"></i> Loading education...</li>
+      </ul>
+    </div>
+
+    <!-- RIGHT CARD - CERTIFICATIONS -->
+    <div class="glass-card about-tech-card certifications-card" data-aos="fade-left">
+      <h4 class="about-tech-title purple-glow" id="certificationsTitle">🏆 Certifications</h4>
+      <div class="about-tech-tags cert-tags" id="certificationsList">
+        <span class="tech-pill cyan">Loading certifications...</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- ✅ SERVICES SECTION -->
+    <section id="services" class="container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-number">04.</div>
+        <h2 class="section-title">Services</h2>
+        <!--<p class="section-subtitle" id="servicesSubtitle">Loading services...</p>-->
+      </div>
+
+      <div class="cards-grid" id="servicesGrid">
+        <div class="glass-card service-placeholder">
+         <!-- <i class="fas fa-spinner fa-spin"></i>-->
+         <!-- <h3>Loading Services...</h3>-->
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ PROJECTS SECTION -->
+    <section id="projects" class="container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-number">05.</div>
+        <h2 class="section-title">Featured Projects</h2>
+        <!--<p class="section-subtitle" id="projectsSubtitle">Loading projects...</p>-->
+      </div>
+
+      <div class="cards-grid" id="projectsGrid">
+        <div class="glass-card project-placeholder">
+          <!--<i class="fas fa-spinner fa-spin"></i>-->
+          <h3>No projects yet. Add from Admin Panel!</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ CONTACT SECTION - STATIC VERSION (No Firebase dependency) -->
+    <section id="contact" class="container">
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-number">06.</div>
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Ready to discuss your next project?</p>
+      </div>
+
+      <div class="contact-content" data-aos="zoom-in">
+        <h3 class="contact-highlight">Let's Build Something Great</h3>
+
+        <!-- ✅ STATIC CONTACT DETAILS - 100% HARDCODED -->
+        <div class="contact-details">
+          <div class="contact-item">
+            <i class="fas fa-user contact-icon"></i>
+            <div class="contact-label">Name</div>
+            <div class="contact-value">Rohit Kumar</div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope contact-icon"></i>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">dellofficial795@gmail.com</div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone-alt contact-icon"></i>
+            <div class="contact-label">Phone</div>
+            <div class="contact-value">+91-8017918011</div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt contact-icon"></i>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Nawada, Bihar, India</div>
+          </div>
+        </div>
+
+        <!-- ✅ SOCIAL LINKS - ALL WORKING LINKS -->
+        <div class="social-grid">
+          <a href="https://github.com/Rohitkumarsaw" class="social-link social-lg" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/rohit-kumar-saw" class="social-link social-lg" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://x.com/DELLOFFICIAL6" class="social-link social-lg" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://www.instagram.com/rsgnsnvk18/" class="social-link social-lg" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://wa.link/byvbcm" class="social-link social-lg" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="https://t.me/Rsgnsnvk18" class="social-link social-lg" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-telegram"></i>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=100040348937165" class="social-link social-lg" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-facebook"></i>
+          </a>
+           <button class="social-link social-lg portfolio-share-btn" id="portfolioShareBtn" title="Share Portfolio">
+  <i class="fas fa-share-alt"></i>
+</button>
+
+        </div>
+
+        <div class="contact-note">
+          <p>Available for freelance projects, remote work, and long-term collaborations.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ✅ FOOTER -->
+  <footer id="footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Rohit Kumar | Full-Stack Web Developer<br>Made with ❤️ from Bihar, India</p>
+      <!--<p class="footer-subtext" id="footerSubtext">Portfolio powered by Firebase Realtime Database</p>-->
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rohit Admin Panel</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="icon" type="image/png" href="icon.png" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body class="admin-body">
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Auth Screen -->
+  <div class="auth-overlay" id="authScreen">
+    <div class="auth-card">
+      <h2><i class="fas fa-shield-alt"></i> Admin Panel</h2>
+      <form id="authForm">
+        <input type="email" id="email" class="auth-input" placeholder="admin@rohitkumar.com" required />
+        <input type="password" id="password" class="auth-input" placeholder="admin123" required />
+        <button type="submit" class="login-btn">
+          <span id="authText">LOGIN</span>
+          <div class="spinner" id="authSpinner"></div>
+        </button>
+      </form>
+      <div id="authError" class="error-msg"></div>
+    </div>
+  </div>
+
+  <!-- Admin Dashboard -->
+  <div class="admin-dashboard" id="adminDashboard" style="display:none;">
+    <!-- Header -->
+    <header class="admin-header">
+      <div class="header-left">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="admin-brand">
+          <i class="fas fa-cogs"></i>
+          <span>Portfolio CMS</span>
+        </div>
+      </div>
+      <div class="admin-user">
+        <span id="adminEmail"></span>
+        <button id="logoutBtn" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </header>
+
+    <div class="layout-shell">
+      <!-- Sidebar -->
+      <aside class="admin-sidebar" id="sidebar">
+        <nav class="admin-nav">
+          <a href="#dashboard" class="nav-item active" data-section="dashboard">
+            <i class="fas fa-tachometer-alt"></i> Dashboard
+          </a>
+          <a href="#stats" class="nav-item" data-section="stats">
+            <i class="fas fa-chart-line"></i> Stats
+          </a>
+          <a href="#about" class="nav-item" data-section="about">
+            <i class="fas fa-user"></i> About
+          </a>
+          <a href="#education" class="nav-item" data-section="education">
+            <i class="fas fa-graduation-cap"></i> Education
+          </a>
+          <a href="#services" class="nav-item" data-section="services">
+            <i class="fas fa-cogs"></i> Services
+          </a>
+          <a href="#projects" class="nav-item" data-section="projects">
+            <i class="fas fa-project-diagram"></i> Projects
+          </a>
+          <a href="./index.html" class="nav-item user-panel-btn" id="goToUserPanel">
+            <i class="fas fa-eye"></i>
+            <span>View Portfolio</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="admin-main">
+        <!-- Dashboard (UNCHANGED) -->
+        <section id="dashboard" class="admin-section active">
+          <h2>Dashboard Overview</h2>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-value" id="totalProjects">0</div>
+              <div class="metric-label">Total Projects</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value" id="totalServices">0</div>
+              <div class="metric-label">Services</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value" id="yearsExpDash">0</div>
+              <div class="metric-label">Years Exp</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value" id="successRateDash">0%</div>
+              <div class="metric-label">Success Rate</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Stats (UNCHANGED) -->
+        <section id="stats" class="admin-section">
+          <h2>Portfolio Stats</h2>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Projects Live (Auto)</label>
+              <input type="number" id="statProjectsLive" min="0" value="0" disabled />
+              <small class="hint-text">This value updates automatically from your projects.</small>
+            </div>
+            <div class="form-group">
+              <label>Years Experience</label>
+              <input type="number" id="statYearsExp" min="0" value="0" />
+              <button class="update-btn" onclick="updateStat('yearsExp')">
+                <i class="fas fa-save"></i> Update
+              </button>
+            </div>
+            <div class="form-group">
+              <label>Success Rate (%)</label>
+              <input type="number" id="statSuccessRate" min="0" max="100" value="0" />
+              <button class="update-btn" onclick="updateStat('successRate')">
+                <i class="fas fa-save"></i> Update
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- About (UNCHANGED) -->
+        <section id="about" class="admin-section">
+          <h2>About Section</h2>
+          <div class="about-premium">
+            <div class="about-left">
+              <div class="about-badge">
+                <i class="fas fa-terminal"></i>
+                <span>Full‑Stack Web Developer</span>
+              </div>
+              <textarea id="aboutText" rows="6" class="about-textarea" placeholder="Write about yourself..."></textarea>
+              <button class="update-btn full-width" onclick="updateAbout()">
+                <i class="fas fa-save"></i> Save About
+              </button>
+            </div>
+            <div class="about-right">
+              <h3 class="sub-heading">Core Tech Stack</h3>
+              <div class="chip-input-wrapper">
+                <input type="text" id="techStack" placeholder="HTML5, CSS3, JavaScript, Firebase, Tailwind..." />
+              </div>
+              <button class="update-btn full-width" onclick="updateTech()">
+                <i class="fas fa-layer-group"></i> Save Tech Stack
+              </button>
+              <div class="tech-preview" id="techPreview"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ✅ UPDATED EDUCATION SECTION -->
+        <section id="education" class="admin-section">
+          <h2>Education & Certifications</h2>
+          
+          <div class="admin-section-header">
+            <h3><i class="fas fa-graduation-cap"></i> Manage Education & Certifications</h3>
+            <div class="admin-actions">
+              <button class="btn-primary btn-sm" onclick="saveEducationData()">
+                <i class="fas fa-save"></i> Save Education
+              </button>
+              <button class="btn-primary btn-sm" onclick="saveCertificationsData()">
+                <i class="fas fa-save"></i> Save Certifications
+              </button>
+            </div>
+          </div>
+
+          <!-- ✅ EDUCATION - NO ICON FIELD -->
+          <div class="admin-form-group">
+            <h4><i class="fas fa-school"></i> 📚 Education</h4>
+            <div id="educationItemsContainer">
+              <div class="admin-empty-state">
+                <i class="fas fa-plus-circle"></i>
+                <p>No education items added yet. Click "Add Education" to get started!</p>
+              </div>
+            </div>
+            <button class="btn-add" onclick="addEducationItem()">
+              <i class="fas fa-plus-circle"></i> Add Education Item
+            </button>
+          </div>
+
+          <!-- ✅ CERTIFICATIONS - WITH ISSUED BY FIELD -->
+          <div class="admin-form-group" style="margin-top: 2rem;">
+            <h4><i class="fas fa-award"></i> 🏆 Certifications</h4>
+            <div id="certificationItemsContainer">
+              <div class="admin-empty-state">
+                <i class="fas fa-certificate"></i>
+                <p>No certifications added yet. Click "Add Certification" to get started!</p>
+              </div>
+            </div>
+            <button class="btn-add" onclick="addCertificationItem()">
+              <i class="fas fa-plus-circle"></i> Add Certification
+            </button>
+          </div>
+
+          <!-- Preview Status -->
+          <div class="admin-preview-status" id="educationPreviewStatus">
+            <span class="status-indicator loading">🔄 Preview will update automatically...</span>
+          </div>
+        </section>
+
+        <!-- Services & Projects (UNCHANGED) -->
+        <section id="services" class="admin-section">
+          <h2>Services Management</h2>
+          <div class="section-header">
+            <p class="section-sub">Define high‑value services you offer to clients.</p>
+            <button class="add-btn" onclick="showForm('service')">
+              <i class="fas fa-plus"></i> Add New Service
+            </button>
+          </div>
+          <div class="card-grid" id="servicesList"></div>
+          <div class="crud-form" id="serviceForm" style="display:none;">
+            <input type="hidden" id="serviceId" />
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Service Title</label>
+                <input type="text" id="serviceTitle" />
+              </div>
+              <div class="form-group full">
+                <label>Description</label>
+                <textarea id="serviceDesc" rows="4" placeholder="Describe your service..."></textarea>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="save-btn" onclick="saveItem('service')">
+                <i class="fas fa-save"></i> Save Service
+              </button>
+              <button class="cancel-btn" onclick="hideForm('service')">Cancel</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" class="admin-section">
+          <h2>Projects Management</h2>
+          <div class="section-header">
+            <p class="section-sub">Showcase your best work with rich cards and tags.</p>
+            <button class="add-btn" onclick="showForm('project')">
+              <i class="fas fa-plus"></i> Add New Project
+            </button>
+          </div>
+          <div class="card-grid" id="projectsList"></div>
+          <div class="crud-form" id="projectForm" style="display:none;">
+            <input type="hidden" id="projectId" />
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Project Title</label>
+                <input type="text" id="projectTitle" />
+              </div>
+              <div class="form-group">
+                <label>Image URL</label>
+                <input type="url" id="projectImage" placeholder="https://..." />
+              </div>
+              <div class="form-group">
+                <label>Live URL (optional)</label>
+                <input type="url" id="projectUrl" placeholder="https://your-project.com" />
+              </div>
+              <div class="form-group">
+                <label>Tags (comma separated)</label>
+                <input type="text" id="projectTags" placeholder="React, Firebase, Tailwind" />
+              </div>
+              <div class="form-group full">
+                <label>Description</label>
+                <textarea id="projectDesc" rows="4" placeholder="Brief project description..."></textarea>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="save-btn" onclick="saveItem('project')">
+                <i class="fas fa-save"></i> Save Project
+              </button>
+              <button class="cancel-btn" onclick="hideForm('project')">Cancel</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-database-compat.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

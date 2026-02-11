@@ -1,0 +1,17 @@
+<!-- बस ये 12 lines grid में paste करें (कहीं भी) -->
+<a href="https://youtube.com/shorts/?${encodeURIComponent(url)}" target="_blank" rel="noopener noreferrer" style="
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  color: #FF0000; font-size: 22px; text-decoration: none; padding: 14px 8px;
+  border-radius: 16px; transition: all 0.3s ease; background: rgba(255,0,0,0.1);
+  border: 2px solid transparent;
+" onmouseover="this.style.transform='scale(1.08)';this.style.background='rgba(255,0,0,0.25)';this.style.borderColor='rgba(255,0,0,0.4)'" onmouseout="this.style.transform='scale(1)';this.style.background='rgba(255,0,0,0.1)';this.style.borderColor='transparent'">
+  <i class="fab fa-youtube"></i><span style="font-size: 11px; font-weight: 600;">YouTube</span>
+</a>
+
+
+
+1. FontAwesome icon ढूंढें (fontawesome.com)
+2. Platform का share URL copy करें  
+3. Color code चुनें (#HEX)
+4. ऊपर template में replace करें
+5. Grid में paste करें ✅
