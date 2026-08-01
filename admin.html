@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="icon" type="image/png" href="icon.png" />
-  <link rel="stylesheet" href="admin.css" />
+  <link rel="icon" type="image/png" href="assets/images/icon.png" />
+  <link rel="stylesheet" href="css/admin.css?v=12" />
 </head>
 
 <body class="admin-body">
@@ -16,16 +16,44 @@
   <!-- Auth Screen -->
   <div class="auth-overlay" id="authScreen">
     <div class="auth-card">
-      <h2><i class="fas fa-shield-alt"></i> Admin Panel</h2>
-      <form id="authForm">
-        <input type="email" id="email" class="auth-input" placeholder="admin@rohitkumar.com" required />
-        <input type="password" id="password" class="auth-input" placeholder="admin123" required />
-        <button type="submit" class="login-btn">
-          <span id="authText">LOGIN</span>
-          <div class="spinner" id="authSpinner"></div>
-        </button>
-      </form>
-      <div id="authError" class="error-msg"></div>
+      <div class="auth-brand">
+        <div class="auth-brand-logo"><i class="fas fa-cogs"></i></div>
+        <h1>Portfolio<span>CMS</span></h1>
+        <p class="auth-brand-tag">Admin Command Center</p>
+        <div class="auth-brand-divider"></div>
+        <ul class="auth-brand-feats">
+          <li><i class="fas fa-database"></i><span>Real-time data sync</span></li>
+          <li><i class="fas fa-shield-halved"></i><span>Firebase secure auth</span></li>
+          <li><i class="fas fa-bolt"></i><span>Instant dashboard</span></li>
+        </ul>
+        <div class="auth-brand-footer">ROHIT KUMAR &nbsp;•&nbsp; FULL-STACK</div>
+      </div>
+      <div class="auth-form-side">
+        <div class="auth-form-head">
+          <h2>Welcome Back</h2>
+          <p class="auth-subtitle">Sign in to manage your portfolio</p>
+        </div>
+        <form id="authForm">
+          <div class="auth-field-label"><i class="fas fa-envelope"></i> Email</div>
+          <div class="auth-field">
+            <i class="fas fa-envelope field-icon"></i>
+            <input type="email" id="email" class="auth-input" placeholder="admin@rohitkumar.com" autocomplete="email" required />
+          </div>
+          <div class="auth-field-label"><i class="fas fa-lock"></i> Password</div>
+          <div class="auth-field">
+            <i class="fas fa-lock field-icon"></i>
+            <input type="password" id="password" class="auth-input" placeholder="admin123" autocomplete="current-password" required />
+          </div>
+          <button type="submit" class="login-btn">
+            <span id="authText">LOGIN</span>
+            <div class="spinner" id="authSpinner"></div>
+          </button>
+        </form>
+        <div id="authError" class="error-msg"></div>
+        <div class="auth-form-footer">
+          <i class="fas fa-shield-halved"></i> Secured by Firebase Authentication
+        </div>
+      </div>
     </div>
   </div>
 
@@ -66,12 +94,26 @@
           <a href="#education" class="nav-item" data-section="education">
             <i class="fas fa-graduation-cap"></i> Education
           </a>
+          <a href="#connect" class="nav-item" data-section="connect">
+            <i class="fas fa-handshake"></i> Connect
+          </a>
           <a href="#services" class="nav-item" data-section="services">
             <i class="fas fa-cogs"></i> Services
           </a>
           <a href="#projects" class="nav-item" data-section="projects">
             <i class="fas fa-project-diagram"></i> Projects
           </a>
+          <a href="#maintenance" class="nav-item" data-section="maintenance">
+            <i class="fas fa-tools"></i> Maintenance
+          </a>
+          <div class="mobile-user-slot" id="mobileUserSlot">
+            <div class="admin-user">
+              <span id="adminEmailMobile"></span>
+              <button id="logoutBtnMobile" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </button>
+            </div>
+          </div>
           <a href="./index.html" class="nav-item user-panel-btn" id="goToUserPanel">
             <i class="fas fa-eye"></i>
             <span>View Portfolio</span>
@@ -81,47 +123,74 @@
 
       <!-- Main Content -->
       <main class="admin-main">
-        <!-- Dashboard (UNCHANGED) -->
+        <!-- Dashboard -->
         <section id="dashboard" class="admin-section active">
-          <h2>Dashboard Overview</h2>
+          <div class="edu-hero">
+            <div class="edu-hero-text">
+              <div class="edu-hero-icon"><i class="fas fa-tachometer-alt"></i></div>
+              <div>
+                <h2>Dashboard Overview</h2>
+                <p>Live snapshot of your portfolio performance.</p>
+              </div>
+            </div>
+            <div class="admin-actions">
+              <span class="sec-live-badge"><i class="fas fa-bolt"></i> LIVE</span>
+            </div>
+          </div>
           <div class="metrics-grid">
             <div class="metric-card">
+              <div class="metric-icon metric-icon--cyan"><i class="fas fa-project-diagram"></i></div>
               <div class="metric-value" id="totalProjects">0</div>
               <div class="metric-label">Total Projects</div>
+              <span class="metric-glow"></span>
             </div>
             <div class="metric-card">
+              <div class="metric-icon metric-icon--green"><i class="fas fa-cogs"></i></div>
               <div class="metric-value" id="totalServices">0</div>
               <div class="metric-label">Services</div>
+              <span class="metric-glow"></span>
             </div>
             <div class="metric-card">
+              <div class="metric-icon metric-icon--purple"><i class="fas fa-award"></i></div>
               <div class="metric-value" id="yearsExpDash">0</div>
               <div class="metric-label">Years Exp</div>
+              <span class="metric-glow"></span>
             </div>
             <div class="metric-card">
+              <div class="metric-icon metric-icon--pink"><i class="fas fa-bullseye"></i></div>
               <div class="metric-value" id="successRateDash">0%</div>
               <div class="metric-label">Success Rate</div>
+              <span class="metric-glow"></span>
             </div>
           </div>
         </section>
 
-        <!-- Stats (UNCHANGED) -->
+        <!-- Stats -->
         <section id="stats" class="admin-section">
-          <h2>Portfolio Stats</h2>
+          <div class="edu-hero">
+            <div class="edu-hero-text">
+              <div class="edu-hero-icon"><i class="fas fa-chart-line"></i></div>
+              <div>
+                <h2>Portfolio Stats</h2>
+                <p>Update the key numbers that power your stats grid.</p>
+              </div>
+            </div>
+          </div>
           <div class="form-grid">
             <div class="form-group">
-              <label>Projects Live (Auto)</label>
+              <label><i class="fas fa-rocket"></i> Projects Live (Auto)</label>
               <input type="number" id="statProjectsLive" min="0" value="0" disabled />
               <small class="hint-text">This value updates automatically from your projects.</small>
             </div>
             <div class="form-group">
-              <label>Years Experience</label>
+              <label><i class="fas fa-calendar-alt"></i> Years Experience</label>
               <input type="number" id="statYearsExp" min="0" value="0" />
               <button class="update-btn" onclick="updateStat('yearsExp')">
                 <i class="fas fa-save"></i> Update
               </button>
             </div>
             <div class="form-group">
-              <label>Success Rate (%)</label>
+              <label><i class="fas fa-bullseye"></i> Success Rate (%)</label>
               <input type="number" id="statSuccessRate" min="0" max="100" value="0" />
               <button class="update-btn" onclick="updateStat('successRate')">
                 <i class="fas fa-save"></i> Update
@@ -130,9 +199,17 @@
           </div>
         </section>
 
-        <!-- About (UNCHANGED) -->
+        <!-- About -->
         <section id="about" class="admin-section">
-          <h2>About Section</h2>
+          <div class="edu-hero">
+            <div class="edu-hero-text">
+              <div class="edu-hero-icon"><i class="fas fa-user"></i></div>
+              <div>
+                <h2>About Section</h2>
+                <p>Your bio and the tech stack you work with.</p>
+              </div>
+            </div>
+          </div>
           <div class="about-premium">
             <div class="about-left">
               <div class="about-badge">
@@ -157,48 +234,76 @@
           </div>
         </section>
 
-        <!-- ✅ UPDATED EDUCATION SECTION -->
+        <!-- ✅ PREMIUM EDUCATION SECTION -->
         <section id="education" class="admin-section">
-          <h2>Education & Certifications</h2>
-          
-          <div class="admin-section-header">
-            <h3><i class="fas fa-graduation-cap"></i> Manage Education & Certifications</h3>
+          <div class="edu-hero">
+            <div class="edu-hero-text">
+              <div class="edu-hero-icon"><i class="fas fa-graduation-cap"></i></div>
+              <div>
+                <h2>Education & Certifications</h2>
+                <p>Manage your academic journey and professional certifications in style.</p>
+              </div>
+            </div>
             <div class="admin-actions">
-              <button class="btn-primary btn-sm" onclick="saveEducationData()">
-                <i class="fas fa-save"></i> Save Education
+              <button class="edu-save-btn" onclick="saveEducationData()">
+                <i class="fas fa-graduation-cap"></i> Save Education
               </button>
-              <button class="btn-primary btn-sm" onclick="saveCertificationsData()">
-                <i class="fas fa-save"></i> Save Certifications
+              <button class="edu-save-btn edu-save-btn--cert" onclick="saveCertificationsData()">
+                <i class="fas fa-award"></i> Save Certifications
               </button>
             </div>
           </div>
 
-          <!-- ✅ EDUCATION - NO ICON FIELD -->
-          <div class="admin-form-group">
-            <h4><i class="fas fa-school"></i> 📚 Education</h4>
-            <div id="educationItemsContainer">
-              <div class="admin-empty-state">
-                <i class="fas fa-plus-circle"></i>
-                <p>No education items added yet. Click "Add Education" to get started!</p>
+          <div class="edu-grid">
+            <!-- ✅ EDUCATION PANEL -->
+            <div class="edu-panel edu-panel--education">
+              <div class="edu-panel-head">
+                <div class="edu-panel-title">
+                  <span class="edu-panel-icon"><i class="fas fa-school"></i></span>
+                  <div>
+                    <h3>Education</h3>
+                    <p>Degrees, diplomas &amp; courses</p>
+                  </div>
+                </div>
+                <span class="edu-count-badge" id="educationCount">0</span>
               </div>
-            </div>
-            <button class="btn-add" onclick="addEducationItem()">
-              <i class="fas fa-plus-circle"></i> Add Education Item
-            </button>
-          </div>
 
-          <!-- ✅ CERTIFICATIONS - WITH ISSUED BY FIELD -->
-          <div class="admin-form-group" style="margin-top: 2rem;">
-            <h4><i class="fas fa-award"></i> 🏆 Certifications</h4>
-            <div id="certificationItemsContainer">
-              <div class="admin-empty-state">
-                <i class="fas fa-certificate"></i>
-                <p>No certifications added yet. Click "Add Certification" to get started!</p>
+              <div id="educationItemsContainer">
+                <div class="admin-empty-state">
+                  <i class="fas fa-plus-circle"></i>
+                  <p>No education items added yet. Click "Add Education" to get started!</p>
+                </div>
               </div>
+
+              <button class="btn-add" onclick="addEducationItem()">
+                <i class="fas fa-plus-circle"></i> Add Education
+              </button>
             </div>
-            <button class="btn-add" onclick="addCertificationItem()">
-              <i class="fas fa-plus-circle"></i> Add Certification
-            </button>
+
+            <!-- ✅ CERTIFICATIONS PANEL -->
+            <div class="edu-panel edu-panel--certifications">
+              <div class="edu-panel-head">
+                <div class="edu-panel-title">
+                  <span class="edu-panel-icon edu-panel-icon--purple"><i class="fas fa-award"></i></span>
+                  <div>
+                    <h3>Certifications</h3>
+                    <p>Courses, badges &amp; achievements</p>
+                  </div>
+                </div>
+                <span class="edu-count-badge edu-count-badge--purple" id="certificationCount">0</span>
+              </div>
+
+              <div id="certificationItemsContainer">
+                <div class="admin-empty-state">
+                  <i class="fas fa-certificate"></i>
+                  <p>No certifications added yet. Click "Add Certification" to get started!</p>
+                </div>
+              </div>
+
+              <button class="btn-add" onclick="addCertificationItem()">
+                <i class="fas fa-plus-circle"></i> Add Certification
+              </button>
+            </div>
           </div>
 
           <!-- Preview Status -->
@@ -207,14 +312,72 @@
           </div>
         </section>
 
-        <!-- Services & Projects (UNCHANGED) -->
+        <!-- ✅ LET'S CONNECT SECTION -->
+        <section id="connect" class="admin-section">
+          <div class="edu-hero">
+            <div class="edu-hero-text">
+              <div class="edu-hero-icon"><i class="fas fa-handshake"></i></div>
+              <div>
+                <h2>Let's Connect</h2>
+                <p>Manage your contact details shown on the user panel.</p>
+              </div>
+            </div>
+            <div class="admin-actions">
+              <button class="edu-save-btn" onclick="saveContactInfo()">
+                <i class="fas fa-id-card"></i> Save Contact
+              </button>
+            </div>
+          </div>
+
+          <div class="edu-grid">
+            <!-- ✅ CONTACT DETAILS PANEL -->
+            <div class="edu-panel edu-panel--education">
+              <div class="edu-panel-head">
+                <div class="edu-panel-title">
+                  <span class="edu-panel-icon"><i class="fas fa-id-card"></i></span>
+                  <div>
+                    <h3>Contact Details</h3>
+                    <p>Name, email, phone &amp; location</p>
+                  </div>
+                </div>
+              </div>
+              <div class="edu-field-grid">
+                <div class="edu-field">
+                  <label>Name</label>
+                  <input type="text" class="contact-name" placeholder="Rohit Kumar">
+                </div>
+                <div class="edu-field">
+                  <label>Email</label>
+                  <input type="email" class="contact-email" placeholder="email@example.com">
+                </div>
+                <div class="edu-field">
+                  <label>Phone</label>
+                  <input type="text" class="contact-phone" placeholder="+91-XXXXXXXXXX">
+                </div>
+                <div class="edu-field">
+                  <label>Location</label>
+                  <input type="text" class="contact-location" placeholder="Nawada, Bihar">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Services -->
         <section id="services" class="admin-section">
-          <h2>Services Management</h2>
-          <div class="section-header">
-            <p class="section-sub">Define high‑value services you offer to clients.</p>
-            <button class="add-btn" onclick="showForm('service')">
-              <i class="fas fa-plus"></i> Add New Service
-            </button>
+          <div class="edu-hero">
+            <div class="edu-hero-text">
+              <div class="edu-hero-icon"><i class="fas fa-cogs"></i></div>
+              <div>
+                <h2>Services Management</h2>
+                <p>Define high‑value services you offer to clients.</p>
+              </div>
+            </div>
+            <div class="admin-actions">
+              <button class="edu-save-btn edu-save-btn--add" onclick="showForm('service')">
+                <i class="fas fa-plus"></i> Add New Service
+              </button>
+            </div>
           </div>
           <div class="card-grid" id="servicesList"></div>
           <div class="crud-form" id="serviceForm" style="display:none;">
@@ -239,12 +402,19 @@
         </section>
 
         <section id="projects" class="admin-section">
-          <h2>Projects Management</h2>
-          <div class="section-header">
-            <p class="section-sub">Showcase your best work with rich cards and tags.</p>
-            <button class="add-btn" onclick="showForm('project')">
-              <i class="fas fa-plus"></i> Add New Project
-            </button>
+          <div class="edu-hero">
+            <div class="edu-hero-text">
+              <div class="edu-hero-icon edu-hero-icon--purple"><i class="fas fa-project-diagram"></i></div>
+              <div>
+                <h2>Projects Management</h2>
+                <p>Showcase your best work with rich cards and tags.</p>
+              </div>
+            </div>
+            <div class="admin-actions">
+              <button class="edu-save-btn edu-save-btn--cert" onclick="showForm('project')">
+                <i class="fas fa-plus"></i> Add New Project
+              </button>
+            </div>
           </div>
           <div class="card-grid" id="projectsList"></div>
           <div class="crud-form" id="projectForm" style="display:none;">
@@ -279,6 +449,109 @@
             </div>
           </div>
         </section>
+
+        <!-- Maintenance -->
+        <section id="maintenance" class="admin-section">
+          <div class="edu-hero">
+            <div class="edu-hero-text">
+              <div class="edu-hero-icon"><i class="fas fa-tools"></i></div>
+              <div>
+                <h2>Maintenance Mode</h2>
+                <p>Put your website into maintenance mode while you work on it.</p>
+              </div>
+            </div>
+            <div class="admin-actions">
+              <span class="maint-status-badge" id="maintStatusBadge"><i class="fas fa-circle"></i> OFF</span>
+            </div>
+          </div>
+
+          <div class="edu-grid">
+            <div class="edu-panel edu-panel--education">
+              <div class="edu-panel-head">
+                <div class="edu-panel-title">
+                  <span class="edu-panel-icon"><i class="fas fa-power-off"></i></span>
+                  <div>
+                    <h3>Status</h3>
+                    <p>Enable or disable maintenance globally</p>
+                  </div>
+                </div>
+              </div>
+              <div class="maint-status-row">
+                <div>
+                  <h4 id="maintStatusText">Maintenance is OFF</h4>
+                  <p class="maint-status-sub" id="maintStatusSub">Website is fully live.</p>
+                </div>
+                <label class="maint-switch">
+                  <input type="checkbox" id="maintEnabled" />
+                  <span class="maint-slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="edu-panel edu-panel--education">
+              <div class="edu-panel-head">
+                <div class="edu-panel-title">
+                  <span class="edu-panel-icon"><i class="fas fa-layer-group"></i></span>
+                  <div>
+                    <h3>Display Mode</h3>
+                    <p>How visitors will see the maintenance notice</p>
+                  </div>
+                </div>
+              </div>
+              <div class="maint-modes">
+                <button class="maint-mode" data-mode="fullscreen" onclick="selectMaintMode('fullscreen')">
+                  <i class="fas fa-expand"></i>
+                  <span class="maint-mode-name">Full Screen</span>
+                  <span class="maint-mode-desc">Covers entire site</span>
+                </button>
+                <button class="maint-mode" data-mode="banner" onclick="selectMaintMode('banner')">
+                  <i class="fas fa-bars-staggered"></i>
+                  <span class="maint-mode-name">Banner</span>
+                  <span class="maint-mode-desc">Sticky top strip</span>
+                </button>
+                <button class="maint-mode" data-mode="popup" onclick="selectMaintMode('popup')">
+                  <i class="fas fa-window-restore"></i>
+                  <span class="maint-mode-name">Popup</span>
+                  <span class="maint-mode-desc">Dismissible popup</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="edu-grid">
+            <div class="edu-panel edu-panel--education">
+              <div class="edu-panel-head">
+                <div class="edu-panel-title">
+                  <span class="edu-panel-icon"><i class="fas fa-pen"></i></span>
+                  <div>
+                    <h3>Message</h3>
+                    <p>Title &amp; message shown to visitors</p>
+                  </div>
+                </div>
+              </div>
+              <div class="maint-msg-form">
+                <div class="edu-field">
+                  <label>Title</label>
+                  <input type="text" id="maintTitle" maxlength="60" placeholder="Under Maintenance" />
+                </div>
+                <div class="edu-field">
+                  <label>Message</label>
+                  <textarea id="maintMessage" rows="4" maxlength="300" placeholder="We are working hard to make things even better. Please check back soon!"></textarea>
+                </div>
+                <div class="form-actions">
+                  <button class="save-btn" onclick="saveMaintenance()">
+                    <i class="fas fa-save"></i> Save Maintenance
+                  </button>
+                  <a class="cancel-btn maint-view-link" href="./index.html" target="_blank">View Live Site</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-preview-status">
+            <span class="status-indicator" id="maintPreviewStatus">Changes are saved instantly to Firebase.</span>
+          </div>
+        </section>
       </main>
     </div>
   </div>
@@ -287,6 +560,6 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-database-compat.js"></script>
-  <script src="admin.js"></script>
+  <script src="js/admin.js?v=9"></script>
 </body>
 </html>
